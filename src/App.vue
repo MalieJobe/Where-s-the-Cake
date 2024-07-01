@@ -1,6 +1,13 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
+import { useSanityClient } from 'vue-sanity'
+
+useSanityClient({
+    projectId: '4cxom23e',
+    dataset: 'production',
+    useCdn: true,
+})
 </script>
 
 <template>
