@@ -1,92 +1,30 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
 import { useSanityClient } from 'vue-sanity'
+import { RouterView } from 'vue-router';
+import Filters from "./components/Filters.vue";
 
 useSanityClient({
     projectId: '4cxom23e',
     dataset: 'production',
     useCdn: true,
 })
+
+
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+    <header>
+      <nav class="flex flex-wrap justify-between items-center md:flex-nowrap md:gap-10">
+        <RouterLink to="/" class="font-cursive text-6xl no-underline text-nowrap">Where's the Cake?</RouterLink>
+        <Filters />
       </nav>
-    </div>
-  </header>
-
-  <RouterView />
+    </header>
+    <main>
+      <RouterView /> <!-- looks up the slug in router.js and inserts the respective view -->
+    </main>
 </template>
-
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
-
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+<style>
+#app {
+  @apply container px-8 mx-auto xl:px-5  max-w-screen-lg py-5 lg:py-8;
 }
 </style>

@@ -1,14 +1,15 @@
 <script setup>
-import TheWelcome from '../components/TheWelcome.vue'
 import { useSanityFetcher } from 'vue-sanity'
 
-const { data: title } = useSanityFetcher('*[_type == "post"][0].title')
-
+const posts = useSanityFetcher('*[_type=="post"]{title,"author": author->name}')?.data?.value
+console.log(posts)
 </script>
 
 <template>
-  <main>
-    <h2>{{ title }}</h2>
-    <TheWelcome />
-  </main>
+  <ul>
+  {{ posts }}
+  <li v-for="post in posts">
+    {{ post["title"] }} - {{ post["author"] }}
+  </li>
+</ul>
 </template>
